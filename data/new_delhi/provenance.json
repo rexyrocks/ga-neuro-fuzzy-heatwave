@@ -1,0 +1,157 @@
+{
+  "location": "New Delhi, India",
+  "latitude": 28.6139,
+  "longitude": 77.209,
+  "retrieved_utc": "2026-10-08T15:43:53.802022+00:00",
+  "source": "NASA POWER gridded meteorological estimates, not station observations",
+  "reference_period": "1985\u20132014",
+  "study_period": "2015\u20132025",
+  "rows": 4018,
+  "class_counts": {
+    "Low": 2974,
+    "Moderate": 896,
+    "High": 106,
+    "Extreme": 42
+  },
+  "climatology_method": "Calendar-day +/-7-day circular window on 30 historical years, using leap-year calendar",
+  "labels": "Research-derived temperature hazard proxies, not official IMD declarations or observed health outcomes. Moderate: Tmax >= local p90 OR >=38 C. High: Tmax >=40 C and anomaly >=4.5 C, OR Tmax>=45 C. Extreme: Tmax>=40 C and anomaly>=6.5 C, OR Tmax>=47 C, OR Tmax>=40 C and >=local p97.5. Higher class takes precedence.",
+  "duration": "Consecutive current/past days above local p90; non-exceedance mapped to 1 for model schema. January 2015 starts a fresh counter.",
+  "sources": [
+    {
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CRH2M&community=AG&longitude=77.209&latitude=28.6139&start=19850101&end=19941231&format=JSON&time-standard=LST",
+      "raw_file": "power_1985_1994.json",
+      "sha256": "620e01916a8a37cee7ed2852d557b17ba49c52a91e166a52d3eee31cfeb7bc3d",
+      "header": {
+        "title": "NASA/POWER Source Native Resolution Daily Data",
+        "api": {
+          "version": "v2.10.0",
+          "name": "POWER Daily API"
+        },
+        "sources": [
+          "MERRA2",
+          "POWER"
+        ],
+        "fill_value": -999.0,
+        "time_standard": "LST",
+        "start": "19850101",
+        "end": "19941231"
+      },
+      "parameters": {
+        "T2M_MAX": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Maximum"
+        },
+        "T2M_MIN": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Minimum"
+        },
+        "RH2M": {
+          "units": "%",
+          "longname": "Relative Humidity at 2 Meters"
+        }
+      }
+    },
+    {
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CRH2M&community=AG&longitude=77.209&latitude=28.6139&start=19950101&end=20041231&format=JSON&time-standard=LST",
+      "raw_file": "power_1995_2004.json",
+      "sha256": "c46b258454971b922e4af18ade50534d5b715dc9a9b4a6b4d3ace0c3a40484e9",
+      "header": {
+        "title": "NASA/POWER Source Native Resolution Daily Data",
+        "api": {
+          "version": "v2.10.0",
+          "name": "POWER Daily API"
+        },
+        "sources": [
+          "MERRA2",
+          "POWER"
+        ],
+        "fill_value": -999.0,
+        "time_standard": "LST",
+        "start": "19950101",
+        "end": "20041231"
+      },
+      "parameters": {
+        "T2M_MAX": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Maximum"
+        },
+        "T2M_MIN": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Minimum"
+        },
+        "RH2M": {
+          "units": "%",
+          "longname": "Relative Humidity at 2 Meters"
+        }
+      }
+    },
+    {
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CRH2M&community=AG&longitude=77.209&latitude=28.6139&start=20050101&end=20141231&format=JSON&time-standard=LST",
+      "raw_file": "power_2005_2014.json",
+      "sha256": "aae4b132130af671dd636929d5c659bff4398bac21949f4d2331fe0483d19d21",
+      "header": {
+        "title": "NASA/POWER Source Native Resolution Daily Data",
+        "api": {
+          "version": "v2.10.0",
+          "name": "POWER Daily API"
+        },
+        "sources": [
+          "MERRA2",
+          "POWER"
+        ],
+        "fill_value": -999.0,
+        "time_standard": "LST",
+        "start": "20050101",
+        "end": "20141231"
+      },
+      "parameters": {
+        "T2M_MAX": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Maximum"
+        },
+        "T2M_MIN": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Minimum"
+        },
+        "RH2M": {
+          "units": "%",
+          "longname": "Relative Humidity at 2 Meters"
+        }
+      }
+    },
+    {
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CRH2M&community=AG&longitude=77.209&latitude=28.6139&start=20150101&end=20251231&format=JSON&time-standard=LST",
+      "raw_file": "power_2015_2025.json",
+      "sha256": "ff513c544aefc629f5e01669c72d0042274c30b718d237d66427f46ba0cd6739",
+      "header": {
+        "title": "NASA/POWER Source Native Resolution Daily Data",
+        "api": {
+          "version": "v2.10.0",
+          "name": "POWER Daily API"
+        },
+        "sources": [
+          "MERRA2",
+          "POWER"
+        ],
+        "fill_value": -999.0,
+        "time_standard": "LST",
+        "start": "20150101",
+        "end": "20251231"
+      },
+      "parameters": {
+        "T2M_MAX": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Maximum"
+        },
+        "T2M_MIN": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Minimum"
+        },
+        "RH2M": {
+          "units": "%",
+          "longname": "Relative Humidity at 2 Meters"
+        }
+      }
+    }
+  ]
+}
