@@ -1,0 +1,4 @@
+max_temp_c,min_temp_c,relative_humidity_pct,duration_days,temp_anomaly_c
+35,24,45,2,2
+41,29,65,5,6
+46,33,70,8,9
