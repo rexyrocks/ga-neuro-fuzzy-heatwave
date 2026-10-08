@@ -2,21 +2,29 @@
 
 Complete research prototype with synthetic demo, CSV training/inference, Streamlit interface, GA optimization, baseline comparisons, fuzzy rule exports and evaluation figures.
 
+## Public demo
+
+[Open Heatwave Risk Explorer](https://endangered-delivers-promoted-scientists.trycloudflare.com)
+
+This temporary Cloudflare Tunnel link was created on 8 October 2026. It works only while the host Mac, local Streamlit app and tunnel remain running. It may be unavailable later, and restarting the tunnel creates a new URL. This is a shared local demo, not permanent cloud hosting.
+
+The app defaults to New Delhi historical weather (2015–2025), with a synthetic demonstration available in the model selector. Risk categories are research-derived weather hazard labels, not official alerts or observed health outcomes.
+
+
 ## Quick start
 
-Python 3.10 or newer. Run from this folder:
+Python 3.13 is recommended for the bundled trained models. Run from this folder:
 
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
-python heatwave.py demo
-python heatwave.py predict --csv data/example_weather.csv
+python -m pip install -r requirements-deploy.txt
+python heatwave.py predict --model results_delhi/model.pkl --csv data/example_weather.csv
 streamlit run app.py
 python -m unittest discover -s tests -v
 ```
 
-The bundled results are from a completed synthetic demo. Re-running replaces them. The interface uses results/model.pkl. Only load trusted pickle files: pickle can execute code. Use matching dependency versions for saved models; the bundled versions are in results/environment.txt.
+The repository includes trained historical and synthetic models; no retraining is required to launch the app. The default historical model is `results_delhi/model.pkl`; selecting the synthetic demo uses `results/model.pkl`. Run `python heatwave.py demo` to regenerate synthetic results or `python train_delhi.py` to retrain the historical model. These commands replace their respective result files. Only load trusted pickle files: pickle can execute code. Use the pinned deployment dependencies for the bundled models.
 
 ## Real CSV data
 
@@ -96,10 +104,18 @@ Duration counts current/past consecutive days above local p90, with non-exceedan
 
 Real-data training uses chronological partitions: 2015–2021 train, 2022–2023 validation, 2024–2025 test. All partitions must contain every class. The scaler is training-only. Consequents refit on train+validation after GA selection. Results are in results_delhi/. The generic train command supports --chronological with these fixed date boundaries; do not use its default random split for this dataset.
 
-## Hosting
+## Cloudflare sharing and hosting
 
-GitHub stores this repository; GitHub Pages cannot execute the Streamlit Python server. To run locally, follow Quick start. For the bundled models, prefer `pip install -r requirements-deploy.txt` with Python 3.13.
+The public demo uses Cloudflare Tunnel to forward HTTPS requests to the local Streamlit server. Cloudflare does not run the Python app in this setup. GitHub stores the source and artifacts; GitHub Pages cannot execute the Streamlit server.
 
-For a public deployment, connect this repository to Render and create a Blueprint using render.yaml, or select app.py on Streamlit Community Cloud. A hosting account and authorization are required; repository publication alone does not create a public running app. Review provider availability and terms before creating a service. Docker runs on port 8501. No credentials are needed by the app.
+To create a new temporary link, install `cloudflared` from [Cloudflare's official instructions](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/), start the app with the Quick start command, then run in a second terminal:
 
-The ten project commits are grouped by component during initial publication; they do not represent a backdated development timeline. Automated checks cover tests, bundled-model inference and the interface classification path.
+```sh
+cloudflared tunnel --url http://127.0.0.1:8501 --no-autoupdate --protocol http2
+```
+
+Open the generated `https://...trycloudflare.com` URL. Keep both processes running and the host awake. Stop the tunnel with Ctrl+C to remove public access. No Cloudflare account is needed for a Quick Tunnel; it has no uptime guarantee. See [Cloudflare Quick Tunnels](https://developers.cloudflare.com/tunnel/get-started/quick-tunnels/).
+
+For persistent availability, run the app on an always-on server and configure a named Cloudflare Tunnel and hostname. A named tunnel still requires a running origin server. Alternatively, this repository includes `Dockerfile` and `render.yaml` for a future server deployment; no such deployment has been provisioned. Docker exposes port 8501. No API credentials are needed by the app.
+
+Automated GitHub checks cover unit tests, bundled-model inference and the interface classification path. The initial ten project commits group components for publication rather than representing a backdated development timeline.
