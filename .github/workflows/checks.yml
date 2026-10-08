@@ -1,0 +1,17 @@
+name: Project checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: python -m pip install -r requirements-deploy.txt
+      - run: python -m unittest discover -s tests -v
+      - run: python heatwave.py predict --model results_delhi/model.pkl --csv data/example_weather.csv --out /tmp/predictions.csv
+      - run: python -c "from streamlit.testing.v1 import AppTest; a=AppTest.from_file('app.py', default_timeout=60).run(); assert not a.exception; a.button[0].click().run(); assert not a.exception"
